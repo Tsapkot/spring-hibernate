@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class MainApp {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(AppConfig.class);
 
@@ -37,6 +37,7 @@ public class MainApp {
         for (User user : users) {
             doSomePrinting(user);
         }
+
         User userFromDB = userService.getUserWithCar("собачья упряжка на пекинесах", 99);
         doSomePrinting(userFromDB);
 
