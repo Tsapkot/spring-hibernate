@@ -1,5 +1,6 @@
 package hiber.dao;
 
+import hiber.model.Car;
 import hiber.model.User;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
@@ -30,10 +31,10 @@ public class UserDaoImp implements UserDao {
     public User getUserWithCar(String model, int series) {
         User result = null;
         try {
-            TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User where cars.model = :carModel and cars.series = :carSeries");
+            TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("from Car where model = :carModel and series = :carSeries");
             query.setParameter("carModel", model);
             query.setParameter("carSeries", series);
-            result = query.getSingleResult();
+            result = query.getSingleResult().getUser();
         } catch (HibernateException e) {
             System.out.println("i can't return a user (((");
             e.printStackTrace(System.out);
