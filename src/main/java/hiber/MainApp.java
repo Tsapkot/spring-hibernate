@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import javax.jws.soap.SOAPBinding;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainApp {
@@ -24,6 +25,7 @@ public class MainApp {
 
         User userWithACar1 = new User("User999", "who", "cares");
         userWithACar1.setCar(new Car("ведро", 99));
+        userWithACar1.setCar(new Car("ведро", 98));
         User userWithACar2 = new User("User666", "lol", "кек");
         userWithACar2.setCar(new Car("boat", 666));
         User userWithACar3 = new User("User777", "%", "от 0");
@@ -49,9 +51,9 @@ public class MainApp {
         System.out.println("First Name = " + user.getFirstName());
         System.out.println("Last Name = " + user.getLastName());
         System.out.println("Email = " + user.getEmail());
-        if (user.getCar() != null) {
-            System.out.println("Model = " + user.getCar().getModel());
-            System.out.println("Series = " + user.getCar().getSeries());
+        if (user.getCar().size() != 0) {
+            System.out.println("Model = " + user.getCar().get(0).getModel());
+            System.out.println("Series = " + user.getCar().get(0).getSeries());
         }
         System.out.println();
     }

@@ -30,7 +30,7 @@ public class UserDaoImp implements UserDao {
     public User getUserWithCar(String model, int series) {
         User result = null;
         try {
-            TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User where car.model = :carModel and car.series = :carSeries");
+            TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User where cars.model = :carModel and cars.series = :carSeries");
             query.setParameter("carModel", model);
             query.setParameter("carSeries", series);
             result = query.getSingleResult();
@@ -44,14 +44,14 @@ public class UserDaoImp implements UserDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<User> listUsers() {
-       List<User> result = new ArrayList<>();
-       try {
-          TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
-           query.getResultList();
-       } catch (Exception e) {
-          System.out.println("Some problems with getting all users from DB");
-          e.printStackTrace(System.out);
-       }
-       return result;
+        List<User> result = new ArrayList<>();
+        try {
+            TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+            result = query.getResultList();
+        } catch (Exception e) {
+            System.out.println("Some problems with getting all users from DB");
+            e.printStackTrace(System.out);
+        }
+        return result;
     }
 }

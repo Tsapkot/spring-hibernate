@@ -17,7 +17,8 @@ public class Car {
     @Column
     private int series;
 
-    @OneToOne(mappedBy = "car")
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Car() {
@@ -26,6 +27,14 @@ public class Car {
     public Car(String model, int series) {
         this.model = model;
         this.series = series;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getCarId() {
